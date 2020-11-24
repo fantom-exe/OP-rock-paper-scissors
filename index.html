@@ -6,19 +6,30 @@
       function computerPlay() {
           let hand = ['rock', 'paper', 'scissors'];
           let random = Math.floor((Math.random() * 3));
-          return hand[random];
+          return hand[random].toLowerCase();
       }
-      function play() {
-          let computerSelection = computerPlay();
-          let playerSelection = prompt('Rock, Paper, or Scissors? (choose 1, 2, or 3)');
+      function userPlay() {
+          let playerSelection = prompt('Rock, Paper, or Scissors?');
+          return playerSelection.toLowerCase();
+      }
+      function play(computerSelection, playerSelection) {
+          let outcome;
           
-          if (playerSelection.toLowerCase() === computerSelection.toLowerCase())
+          if (playerSelection === computerSelection)
+              outcome = 'It\' a tie!';
+          else if (playerSelection === computerSelection)
+              outcome = '';
+          else if (playerSelection === computerSelection)
+              outcome = '';
+          else
+              ;
           
+          return outcome;
       }
     </script>
   </head>
 
   <body id="home">
-    
+  
   </body>
 </html>
