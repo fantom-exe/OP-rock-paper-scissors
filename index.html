@@ -59,11 +59,14 @@
       }
       function game() {
         const numOfPlays = prompt("How many hands do you want to play?");
-        const playerSelection = userPlay();
-        const computerSelection = computerPlay();
-        let score = 0;
+        let playerSelection,
+            computerSelection,
+            score = 0;
         
+        // play loop
         for (let i = 0; i < numOfPlays; i++) {
+          playerSelection = userPlay();
+          computerSelection = computerPlay();
           score += playRound(playerSelection, computerSelection);
         }
         
