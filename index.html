@@ -1,30 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Rock | Paper | Scissor</title>
+    <title>Rock | Paper | Scissors</title>
     <script>
+      function userPlay() {
+          let hand = prompt('Rock, Paper, or Scissors?');
+          return hand.toLowerCase();
+      }
       function computerPlay() {
           let hand = ['rock', 'paper', 'scissors'];
           let random = Math.floor((Math.random() * 3));
           return hand[random].toLowerCase();
       }
-      function userPlay() {
-          let playerSelection = prompt('Rock, Paper, or Scissors?');
-          return playerSelection.toLowerCase();
-      }
       function play(computerSelection, playerSelection) {
-          let outcome;
+          let outcome; // holds int val of outcome
           
-          if (playerSelection === computerSelection)
-              outcome = 'It\' a tie!';
-          else if (playerSelection === computerSelection)
-              outcome = '';
-          else if (playerSelection === computerSelection)
-              outcome = '';
-          else
-              ;
+          /* calculate outcomes */
+          if(computerSelection === playerSelection) { // tie
+              outcome = 0;
+          }
+          else if(computerSelection === 'rock') {
+            if(playerSelection === 'paper') {
+                // player wins
+                outcome = 1;
+            }
+            else { // playerSelection === 'scissors'
+                // computer wins
+                outcome = 2;
+            }
+          }
+          else if (computerSelection === 'paper') {
+              if(playerSelection === 'scissors') {
+                  // player wins
+                  outcome = 1;
+              }
+              else { // playerSelection === 'rock'
+                  // computer wins
+                  outcome = 2;
+              }
+          }
+          else if (computerSelection === 'scissors') {
+              if(playerSelection === 'rock') {
+                  // player wins
+                  outcome = 1;
+              }
+              else { // playerSelection === 'paper'
+                  // computer wins
+                  outcome = 2;
+              }
+          }
+          else { // unknown input
+              return "Error! Invalid input";
+          }
           
-          return outcome;
+          // return outcome
+          switch (outcome) {
+              case 0: // tie
+                  return "It's a tie!";
+              case 1: // player wins
+                  return "You win!";
+              case 2: // computer wins
+                  return "computerSelection wins!";
+              default:
+                  break;
+          }
       }
     </script>
   </head>
