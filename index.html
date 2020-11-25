@@ -12,51 +12,70 @@
         let random = Math.floor((Math.random() * 3));
         return hand[random].toLowerCase();
       }
-      function game() {
-        function playRound(playerSelection, computerSelection) {
-          let playerScore = 0; // holds int val of player's wins
-          
-          /* calculate outcomes */
-          if(computerSelection === playerSelection) { // tie
-            return "It's a tie!";
+      function playRound(playerSelection, computerSelection) {
+        /* Plays a round
+          Return  1 if player wins
+          Return  0 if tie
+          Return -1 if computer wins
+        */
+        if(computerSelection === playerSelection) { // tie
+          console.log("It's a tie!");
+          return 0;
+        }
+        else if(computerSelection === 'rock') {
+          if(playerSelection === 'paper') {
+            console.log("You win!");
+            return 1;
           }
-          else if(computerSelection === 'rock') {
-            if(playerSelection === 'paper') {
-              playerScore += 1;
-              return "You win!";
-            }
-            else { // playerSelection === 'scissors'
-              return "Computer wins!";
-            }
-          }
-          else if (computerSelection === 'paper') {
-            if(playerSelection === 'scissors') {
-              playerScore += 1;
-              return "You win!";
-            }
-            else { // playerSelection === 'rock'
-              return "Computer wins!";
-            }
-          }
-          else if (computerSelection === 'scissors') {
-            if(playerSelection === 'rock') {
-              playerScore += 1;
-              return "You win!";
-            }
-            else { // playerSelection === 'paper'
-              return "Computer wins!";
-            }
-          }
-          else { // unknown input
-            return "Error! Invalid input";
+          else { // playerSelection === 'scissors'
+            console.log("Computer wins!");
+            return -1;
           }
         }
-        
-        /* TEST */
+        else if (computerSelection === 'paper') {
+          if(playerSelection === 'scissors') {
+            console.log("You win!");
+            return 1;
+          }
+          else { // playerSelection === 'rock'
+            console.log("Computer wins!");
+            return -1;
+          }
+        }
+        else if (computerSelection === 'scissors') {
+          if(playerSelection === 'rock') {
+            console.log("You win!");
+            return 1;
+          }
+          else { // playerSelection === 'paper'
+            console.log("Computer wins!");
+            return -1;
+          }
+        }
+        else { // unknown input
+          console.log("Error! Invalid input");
+          // return 0;
+        }
+      }
+      function game() {
+        const numOfPlays = prompt("How many hands do you want to play?");
         const playerSelection = userPlay();
         const computerSelection = computerPlay();
+        let score = 0;
         
-        console.log(playRound(playerSelection, computerSelection));
+        for (let i = 0; i < numOfPlays; i++) {
+          score += playRound(playerSelection, computerSelection);
+        }
+        
+        if (score > 0) { // player wins
+          console.log("YOU WIN! :D");
+        }
+        else if (score < 0) { // computer wins
+          console.log("COMPUTER WINS! ;)");
+        }
+        else { // tie
+          console.log("It's a tie :0");
+        }
       }
     </script>
   </head>
