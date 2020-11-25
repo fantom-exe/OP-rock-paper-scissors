@@ -12,58 +12,51 @@
         let random = Math.floor((Math.random() * 3));
         return hand[random].toLowerCase();
       }
-      function play(computerSelection, playerSelection) {
-        let outcome; // holds int val of outcome
-        
-        /* calculate outcomes */
-        if(computerSelection === playerSelection) { // tie
-            outcome = 0;
-        }
-        else if(computerSelection === 'rock') {
-          if(playerSelection === 'paper') {
-              // player wins
-              outcome = 1;
+      function game() {
+        function playRound(playerSelection, computerSelection) {
+          let playerScore = 0; // holds int val of player's wins
+          
+          /* calculate outcomes */
+          if(computerSelection === playerSelection) { // tie
+            return "It's a tie!";
           }
-          else { // playerSelection === 'scissors'
-              // computer wins
-              outcome = 2;
-          }
-        }
-        else if (computerSelection === 'paper') {
-          if(playerSelection === 'scissors') {
-              // player wins
-              outcome = 1;
-          }
-          else { // playerSelection === 'rock'
-              // computer wins
-              outcome = 2;
-          }
-        }
-        else if (computerSelection === 'scissors') {
-          if(playerSelection === 'rock') {
-              // player wins
-              outcome = 1;
-          }
-          else { // playerSelection === 'paper'
-              // computer wins
-              outcome = 2;
-          }
-        }
-        else { // unknown input
-          return "Error! Invalid input";
-        }
-        
-        // return outcome
-        switch (outcome) {
-          case 0: // tie
-              return "It's a tie!";
-          case 1: // player wins
+          else if(computerSelection === 'rock') {
+            if(playerSelection === 'paper') {
+              playerScore += 1;
               return "You win!";
-          case 2: // computer wins
-              return "computerSelection wins!";
-          default:
-              break;
+            }
+            else { // playerSelection === 'scissors'
+              return "Computer wins!";
+            }
+          }
+          else if (computerSelection === 'paper') {
+            if(playerSelection === 'scissors') {
+              playerScore += 1;
+              return "You win!";
+            }
+            else { // playerSelection === 'rock'
+              return "Computer wins!";
+            }
+          }
+          else if (computerSelection === 'scissors') {
+            if(playerSelection === 'rock') {
+              playerScore += 1;
+              return "You win!";
+            }
+            else { // playerSelection === 'paper'
+              return "Computer wins!";
+            }
+          }
+          else { // unknown input
+            return "Error! Invalid input";
+          }
         }
+        
+        /* TEST */
+        const playerSelection = userPlay();
+        const computerSelection = computerPlay();
+        
+        console.log(playRound(playerSelection, computerSelection));
       }
     </script>
   </head>
